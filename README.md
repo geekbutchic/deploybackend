@@ -95,19 +95,19 @@
 
 ### Requirements (Students A and B - Part 2: Configure Heroku and Deploy)
 - Note: Here is the dev guide for deployment for reference
-  - https://devcenter.heroku.com/articles/git
-- Create an account on Heroku
+  - https://devcenter.heroku.com/articles/git. ✅
+- Create an account on Heroku. ✅
  - https://www.heroku.com/
 - In your local repository, commit all changes and push to origin
-- For Student B: 
+- For Student B: ✅
   - Create a new Heroku remote host for the server: 
-    - heroku create -a deploybackend
+    - heroku create -a deploybackend ✅
   - Deploy your server code:
-    - git push heroku main
-  - If everything worked, Student B should now have a Heroku url for the hosted server. Send that url to Student A.
+    - git push heroku main ✅
+  - If everything worked, Student B should now have a Heroku url for the hosted server. Send that url to Student A. ✅
 - For Student A:
-  - Create a new Heroku remote host for the client:
-    - heroku create -a deployfrontend
+  - Create a new Heroku remote host for the client: ✅
+    - heroku create -a deployfrontend ✅
   - Add the url Student B sent you as a new environment variable in the Heroku dashboard for your application.
     - Log in to https://dashboard.heroku.com/
     - Click on the app that you've deployed
