@@ -116,4 +116,141 @@
     - Add the new environment variable as a new config var
   - Deploy your client code:
     - git push heroku main
-- If everything has been set up correctly, you should be able to type a message on the client home page, press the Send button, and see the server response message with two date timestamps.
+- If everything has been set up correctly, you should be able to type a message on the client home page, press the Send button, and see the server response message with two date timestamps. ✅
+
+//===========================================================================
+
+## Approach (Collaborative Features)
+
+- For this part of the assignment, the goal will be for both students A and B to implement fullstack features in parallel with each other (at the same time, but not interfering with one another). ✅
+- In order to facilitate this, both students will need to pull each other's code to their local machines to setup their local dev environment. ✅
+- After implementing a feature, the Students should create a pull request in each other's repository to get their code merged in and deployed. ✅
+
+- Student A will be implementing the GET and display of a basic user list
+- Student B will be implementing the POST and DELETE of users from the user list
+
+- Note: Instructions for this part of the assignment will be simple, but intentionally kept at a high level overview. 
+- For instance, an instruction to implement a fetch function will say something like "Implement a function that will fetch data from the server and display it to a page on the front end" without the example async fetch code or the specific state variable names. ✅
+- Students are encouraged to use their own judgement in implementing a feature and should use the previous assignments as example code. ✅
+- Grading for this assignment will NOT be based upon how a particular feature was implemented, but rather if the feature functions as intended. If there is any part of the assignment that is particularly vague or confusing, please inform the instructors so that they may clarify the requirements. ✅
+
+### Requirements (Students A and B - Part 4: Local Development)
+
+- For both students: 
+  - Add your partner as a collaborator on your github repository, this will allow them to make commits and pull requests. ✅
+  - Send a link to your repository to your partner. ✅
+  - Clone the repository your partner sent to you to your local computer
+  - Exchange .env files (.env.local for React) over slack (do NOT commit .env files to your repository) and add them to the root folder you just cloned
+  - Run npm i to install the Node_Modules for the repository
+  - Run npm start for your server and client repositories
+  - If you did this right, you should have a local development environment that mirrors the ones you have on production (the ones you both deployed)
+  - IMPORTANT: Run the following commands in your terminal to create a new branch for your code so that your git commits do not conflict with the main git branch. This should be done in both the Client AND the Server repositories.
+    - git branch {your initials}-development
+      - Note: Replace {your initials} with the initials of your first and last name, for instance jn-development. This is to avoid a branch name conflict with your partner. 
+    - git checkout {your initials}-development
+
+### Requirements (Students A - Part 4: GET and Display Data)
+
+- In the server ./routes/index.js file:
+  - Add a new variable in the global scope called userList and initialize it to an array with a single example user
+    - const userList = [{
+      id: 1,
+      firstName: "John",
+      lastName: "Doe",
+      email: "jd@gmail.com"
+    }];
+  - Add a new GET route "/get-users", it should:
+    - Send userList as a response
+
+- In the client, implement the following:
+  - In <App />, add a new useEffect to fetch the userList from the server and pass the userList as a prop into <HomePage />. Here is an outline of the approach:
+    - Create a new state variable in <App /> to store the userList data
+    - Create a new useEffect that will initiate a GET request using fetch to the server
+    - In the useEffect, set the state variable you created for the userList to the data fetched from the server
+    - Pass the state variable as a prop into <HomePage />
+  - In <HomePage />, 
+    - Create a new map function in the JSX of <HomePage /> 
+    - The map function should iterate through the state variable you made for the userList in <App /> that you have passed into <HomePage /> as a prop
+    - The map should return a simple JSX element that displays the firstName, lastName, and email of each user in the userList
+
+### Requirements (Students B - Part 4: POST and Input Data)
+
+- In the server ./routes/index.js file:
+  - Add a new variable in the global scope called userList and initialize it to an array with a single example user
+    - const userList = [{
+        id: 1,
+        firstName: "John",
+        lastName: "Doe",
+        email: "jd@gmail.com"
+      }];
+  - Add a new POST route "/create-user", it should:
+    - Get new user data from the req.body
+      - const firstName = req.body.firstName
+        const lastName = req.body.lastName
+        const email = req.body.email
+    - Generate a new id for the new user
+      - [Optional] use uuidv4 to generate a new user ID instead. Note: This will likely produce a merge conflict with your partner's code later on in the requirements.
+    - Push the new user data as a new user into the userList
+      - const newUser = {
+          id,
+          firstName,
+          lastName,
+          email
+        }
+        userList.push(newUser)
+    - Respond with a 200 status code and a success message
+
+- In the client, implement the following:
+  - Add a new page in ./Pages called <PostUser />
+  - In <App />, 
+    - Add <PostUser /> as a new route "/post-user"
+    - Write a new function postUserData, it should:
+      - Take in userData as a parameter
+      - Make a POST request to the "/create-user" server route using fetch
+      - The POST body should be JSON stringified userData
+      - Note: Remember to include the application/json content-type header in the request options
+         - headers: {
+            "Content-Type": "application/json",
+          }
+    - Pass postUserData as a prop into <PostUser />
+  - In <PostUser />
+    - Create 3 new text input fields hooked up to 3 new state variables to hold the new user's firstName, lastName, and email
+    - Add a Submit button that calls props.postUserData onClick and passes in the new user data as a parameter
+      - onClick={()=>{
+        props.postUserData({
+          firstName,
+          lastName,
+          email
+        })
+      }}
+
+### Requirements (Students A and B - Part 5: Merge and Deploy)
+
+- Both students should commit their code to their {your initials}-development branch for both the Client and Server repositories:
+  - git checkout {your initials}-development (this command is only necessary if you were not already on the {your initials}-development branch)
+  - git add .
+  - git commit -m "write your commit message here"
+  - git push origin {your initials}-development 
+    - Note: We are pushing to the {your initials}-development branch on the origin for both Client and Server. One repository should be yours and the other should be your partners
+- Pull up both the Client and Server repositories in github, you should see your branch if you view the list of branches (you may see your partners branch as well)
+- Create a pull request from the {your initials}-development branch to the main branch
+- Your PARTNER should review the code in your pull request and suggest any changes you should make before they merge your code in
+- Once you have reviewed your partner's pull request and there are no merge conflicts, merge the code into main
+- In your local computer file system, pull the latest main branch
+  - git pull origin main
+- You should now have the most up to date code which includes both yours and your partner's code
+- Test the code locally to see if it works
+- Deploy the code using Heroku
+  - git push heroku main
+- Note: You control the deployment for either the Client or the Server repository. Thus, you will need to work and deploy the new code in tandem with your partner to ensure that the Production Client and Production Server have the most up to date versions of code that work together.
+- If you implemented all of the above correctly, you should be able to test the create user and display userList functionality on Production.
+
+## F.A.Q
+
+- How to get server logs?
+  - heroku logs -n 200
+    - For requesting the first 200 lines
+  - [More Useful Command] heroku logs --tail
+    - For requesting the end of the file
+  - heroku logs --tail -n 500
+    - Combined command
