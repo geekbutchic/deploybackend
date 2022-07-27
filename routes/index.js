@@ -26,11 +26,11 @@ router.post("/post-message", (req, res) => {
   try {
     const clientMessage = req.body.clientMessage;
     const dateTime = new Date().toLocaleDateString("en-US");
-    const response = `Received client message ${clientMessage}. Responded at ${dateTime.toString()}`
-    res.json({ serverMessage : response }).status(200);
+    const response = `Received client message ${clientMessage}. Responded at ${dateTime.toString()}`;
+    res.json({ serverMessage: response }).status(200);
   } catch (e) {
     console.log(`Message not sent ${e}`, e);
-    res.json({ serverMessage: `${e}` }).status(500)
+    res.json({ serverMessage: `${e}` }).status(500);
   }
 });
 
@@ -53,9 +53,8 @@ router.post("/create-user", async (req, res) => {
       .status(200);
   } catch (e) {
     console.log(`Error user not created`, e);
-    res
-    .json({ serverMessage: `${e}`, success: false })
-    .status(500);
-
+    res.json({ serverMessage: `${e}`, success: false }).status(500);
+  }
+});
 
 module.exports = router;
