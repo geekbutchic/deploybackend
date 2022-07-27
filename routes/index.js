@@ -47,7 +47,6 @@ router.post("/create-user", async (req, res) => {
       email,
     };
     userList.push(newUser);
-    console.log(userList);
     res
       .json({ serverMessage: `New user successfully created.`, success: true })
       .status(200);
