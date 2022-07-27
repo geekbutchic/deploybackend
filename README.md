@@ -228,18 +228,18 @@
 
 - Both students should commit their code to their {your initials}-development branch for both the Client and Server repositories: ✅
   - git checkout {your initials}-development (this command is only necessary if you were not already on the {your initials}-development branch)
-  - git add . 
-  - git commit -m "write your commit message here"
-  - git push origin {your initials}-development 
-    - Note: We are pushing to the {your initials}-development branch on the origin for both Client and Server. One repository should be yours and the other should be your partners
-- Pull up both the Client and Server repositories in github, you should see your branch if you view the list of branches (you may see your partners branch as well)
-- Create a pull request from the {your initials}-development branch to the main branch
-- Your PARTNER should review the code in your pull request and suggest any changes you should make before they merge your code in
-- Once you have reviewed your partner's pull request and there are no merge conflicts, merge the code into main
+  - git add . ✅
+  - git commit -m "write your commit message here". ✅
+  - git push origin {your initials}-development. ✅
+    - Note: We are pushing to the {your initials}-development branch on the origin for both Client and Server. One repository should be yours and the other should be your partners. ✅
+- Pull up both the Client and Server repositories in github, you should see your branch if you view the list of branches (you may see your partners branch as well). ✅
+- Create a pull request from the {your initials}-development branch to the main branch. 
+- Your PARTNER should review the code in your pull request and suggest any changes you should make before they merge your code in. 
+- Once you have reviewed your partner's pull request and there are no merge conflicts, merge the code into main.
 - In your local computer file system, pull the latest main branch
-  - git pull origin main
-- You should now have the most up to date code which includes both yours and your partner's code
-- Test the code locally to see if it works
+  - git pull origin main.
+- You should now have the most up to date code which includes both yours and your partner's code.
+- Test the code locally to see if it works.
 - Deploy the code using Heroku
   - git push heroku main
 - Note: You control the deployment for either the Client or the Server repository. Thus, you will need to work and deploy the new code in tandem with your partner to ensure that the Production Client and Production Server have the most up to date versions of code that work together.
