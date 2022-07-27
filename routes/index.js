@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+const { uuid } = require("uuidv4");
+// npm i uuidv4
 
 const userList = [
   {
@@ -20,41 +22,40 @@ router.get("/get-users", function (req, res) {
   res.json(userList);
 });
 
-router.post("/post-message", async (req, res) => {
+router.post("/post-message", (req, res) => {
   try {
-    const dateTime = new Date();
     const clientMessage = req.body.clientMessage;
-    const response = `Received client message: ${clientMessage}. Responded at ${dateTime.toString()}`;
-    res.json({ serverMessage: response }).status(200);
-  } catch (error) {
-    res.json({ success: false }).status(500);
+    const dateTime = new Date().toLocaleDateString("en-US");
+    const response = `Received client message ${clientMessage}. Responded at ${dateTime.toString()}`
+    res.json({ serverMessage : response }).status(200);
+  } catch (e) {
+    console.log(`Message not sent ${e}`, e);
+    res.json({ serverMessage: `${e}` }).status(500)
   }
 });
 
-router.post("/create-user", (req, res, next) => {
+router.post("/create-user", async (req, res) => {
   try {
+    const uid = uuid();
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const email = req.body.email;
-    const lastUser = userList[userList.length - 1];
-
     const newUser = {
-      id: Number(lastUser.id + 1),
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
+      uid,
+      firstName,
+      lastName,
+      email,
     };
-
     userList.push(newUser);
+    console.log(userList);
+    res
+      .json({ serverMessage: `New user successfully created.`, success: true })
+      .status(200);
+  } catch (e) {
+    console.log(`Error user not created`, e);
+    res
+    .json({ serverMessage: `${e}`, success: false })
+    .status(500);
 
-    res
-      .status(200)
-      .json({ message: "Successfully added new user", success: true });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error adding new user" + error, success: false });
-  }
-});
 
 module.exports = router;

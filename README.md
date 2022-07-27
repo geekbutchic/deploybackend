@@ -127,7 +127,7 @@
 - After implementing a feature, the Students should create a pull request in each other's repository to get their code merged in and deployed. ✅
 
 - Student A will be implementing the GET and display of a basic user list
-- Student B will be implementing the POST and DELETE of users from the user list
+- Student B will be implementing the POST and DELETE of users from the user list. ✅
 
 - Note: Instructions for this part of the assignment will be simple, but intentionally kept at a high level overview. 
 - For instance, an instruction to implement a fetch function will say something like "Implement a function that will fetch data from the server and display it to a page on the front end" without the example async fetch code or the specific state variable names. ✅
@@ -139,15 +139,15 @@
 - For both students: 
   - Add your partner as a collaborator on your github repository, this will allow them to make commits and pull requests. ✅
   - Send a link to your repository to your partner. ✅
-  - Clone the repository your partner sent to you to your local computer
+  - Clone the repository your partner sent to you to your local computer. ✅
   - Exchange .env files (.env.local for React) over slack (do NOT commit .env files to your repository) and add them to the root folder you just cloned
-  - Run npm i to install the Node_Modules for the repository
-  - Run npm start for your server and client repositories
-  - If you did this right, you should have a local development environment that mirrors the ones you have on production (the ones you both deployed)
-  - IMPORTANT: Run the following commands in your terminal to create a new branch for your code so that your git commits do not conflict with the main git branch. This should be done in both the Client AND the Server repositories.
-    - git branch {your initials}-development
-      - Note: Replace {your initials} with the initials of your first and last name, for instance jn-development. This is to avoid a branch name conflict with your partner. 
-    - git checkout {your initials}-development
+  - Run npm i to install the Node_Modules for the repository. ✅
+  - Run npm start for your server and client repositories. ✅
+  - If you did this right, you should have a local development environment that. mirrors the ones you have on production (the ones you both deployed). ✅
+  - IMPORTANT: Run the following commands in your terminal to create a new branch for your code so that your git commits do not conflict with the main git branch. This should be done in both the Client AND the Server repositories. ✅
+    - git branch {your initials}-development. ✅
+      - Note: Replace {your initials} with the initials of your first and last name, for instance jn-development. This is to avoid a branch name conflict with your partner. ✅
+    - git checkout {your initials}-development. ✅
 
 ### Requirements (Students A - Part 4: GET and Display Data)
 
@@ -175,19 +175,19 @@
 
 ### Requirements (Students B - Part 4: POST and Input Data)
 
-- In the server ./routes/index.js file:
+- In the server ./routes/index.js file: ✅
   - Add a new variable in the global scope called userList and initialize it to an array with a single example user
     - const userList = [{
         id: 1,
         firstName: "John",
         lastName: "Doe",
         email: "jd@gmail.com"
-      }];
+      }]; ✅
   - Add a new POST route "/create-user", it should:
     - Get new user data from the req.body
       - const firstName = req.body.firstName
         const lastName = req.body.lastName
-        const email = req.body.email
+        const email = req.body.email ✅
     - Generate a new id for the new user
       - [Optional] use uuidv4 to generate a new user ID instead. Note: This will likely produce a merge conflict with your partner's code later on in the requirements.
     - Push the new user data as a new user into the userList
@@ -198,9 +198,9 @@
           email
         }
         userList.push(newUser)
-    - Respond with a 200 status code and a success message
+    - Respond with a 200 status code and a success message. ✅
 
-- In the client, implement the following:
+- In the client, implement the following: 
   - Add a new page in ./Pages called <PostUser />
   - In <App />, 
     - Add <PostUser /> as a new route "/post-user"
@@ -226,9 +226,9 @@
 
 ### Requirements (Students A and B - Part 5: Merge and Deploy)
 
-- Both students should commit their code to their {your initials}-development branch for both the Client and Server repositories:
+- Both students should commit their code to their {your initials}-development branch for both the Client and Server repositories: ✅
   - git checkout {your initials}-development (this command is only necessary if you were not already on the {your initials}-development branch)
-  - git add .
+  - git add . 
   - git commit -m "write your commit message here"
   - git push origin {your initials}-development 
     - Note: We are pushing to the {your initials}-development branch on the origin for both Client and Server. One repository should be yours and the other should be your partners
