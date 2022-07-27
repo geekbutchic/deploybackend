@@ -17,6 +17,11 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
+// GET users
+router.get("/get-users", function (req, res) {
+  res.json(userList);
+});
+
 router.post("/post-message", (req, res) => {
   try {
     const clientMessage = req.body.clientMessage;
@@ -51,7 +56,6 @@ router.post("/create-user", async (req, res) => {
     res
     .json({ serverMessage: `${e}`, success: false })
     .status(500);
-  }
-});
+
 
 module.exports = router;
